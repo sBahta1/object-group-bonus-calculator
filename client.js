@@ -22,8 +22,8 @@ class Bonus {
    this.bonusPercentage = bonusPercentage;
    this.totalCompensation = totalCompensation;
    this.totalBonus = totalBonus;
- }
-}
+ }//end constructor
+}//end Bonus
 
 console.table( employees );
 //create function that takes in one Employee object and returns new object with: name, bonus %, total compensation,total bonus.
@@ -38,7 +38,7 @@ function ratingBonus(employee) {
     return 10;
     }else{
     return 'error';
-  }
+  }//end 'if' review sorting
 }//end ratingBonus
 
 function seniorityBonus(employee) {
@@ -46,7 +46,7 @@ function seniorityBonus(employee) {
     return 5;
   }else{
     return 0;
-  }
+  }//end if seniority sorting
 }//end seniorityBonus
 
 function baseSalaryAdjustment(employee) {
@@ -54,7 +54,7 @@ function baseSalaryAdjustment(employee) {
     return -1;
   } else {
     return 0;
-  }
+  }//end 'if' base Salary sorting
 } //end baseSalaryAdjustment
 
 function percentCalc( employee) {
@@ -65,15 +65,15 @@ function percentCalc( employee) {
     bonusPercent = 0;
   }
     return bonusPercent;
-}
+}// end percentCalc
 
 function totalBonusCalc(employee) {
   if (percentCalc(employee)>0 ){
-  return employee.annualSalary/ percentCalc(employee);
+  return Math.round(employee.annualSalary/ percentCalc(employee));
 } else{
   return 0;
-}
-}
+  }
+}//end totalBonusCalc
 
 function totalCompensationCalc(employee) {
   return Math.round(Number(employee.annualSalary)+totalBonusCalc(employee));
