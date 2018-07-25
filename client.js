@@ -14,7 +14,7 @@ const robert =  new Employee( 'Robert', '26835', '66000', 1 );
 const mayella =  new Employee( 'Mayella', '89068', '35000', 2 );
 
 const employees = [ atticus, jem, scout, robert, mayella ];
-
+let newSchedule = [];
 // YOU SHOULD NOT NEED TO CHANGE ANYTHING ABOVE THIS POINT
 class Bonus {
  constructor (name, bonusPercentage, totalCompensation, totalBonus){
@@ -25,49 +25,37 @@ class Bonus {
  }
 }
 
-console.log( employees );
+console.table( employees );
 //create function that takes in one Employee object and returns new object with: name, bonus %, total compensation,total bonus.
 function ratingBonus(employee) {
-  if (employee.reviewRating < 3){console.log(0);
+  if (employee.reviewRating < 3){
     return 0;
-  } else if (employee.reviewRating === 3){
-    console.log(4);
+    } else if (employee.reviewRating === 3){
       return 4;
-  } else if (employee.reviewRating === 4){
-    console.log(6);
+    } else if (employee.reviewRating === 4){
     return 6;
-  } else if (employee.reviewRating === 5){
-    console.log(10);
+    } else if (employee.reviewRating === 5){
     return 10;
-  }else{
+    }else{
     return 'error';
   }
 }//end ratingBonus
 
-console.log(ratingBonus(scout));
-
 function seniorityBonus(employee) {
   if (employee.employeeNumber.length === 4){
-    console.log(5);
     return 5;
   }else{
-    console.log(0);
     return 0;
   }
 }//end seniorityBonus
 
-console.log(seniorityBonus(scout));
-
 function baseSalaryAdjustment(employee) {
   if (Number(employee.annualSalary) >65000){
-    console.log(-1);
     return -1;
   } else {
-    console.log(0);
     return 0;
   }
 } //end baseSalaryAdjustment
-console.log(baseSalaryAdjustment(scout));
 
 function percentCalc( employee) {
   let bonusPercent = ratingBonus(employee)+baseSalaryAdjustment(employee)+seniorityBonus(employee);
@@ -78,17 +66,18 @@ function percentCalc( employee) {
   }
     return bonusPercent;
 }
-console.log(percentCalc(scout));
 
 function totalBonusCalc(employee) {
-return employee.annualSalary/=percentCalc(employee);
+  if (percentCalc(employee)>0 ){
+  return employee.annualSalary/ percentCalc(employee);
+} else{
+  return 0;
 }
-console.log(totalBonusCalc(scout));
+}
 
 function totalCompensationCalc(employee) {
-  return Math.round(employee.annualSalary+=totalBonusCalc(employee));
+  return Math.round(Number(employee.annualSalary)+totalBonusCalc(employee));
 }
-console.log(totalCompensationCalc(scout));
 
 function payStub(){
 
